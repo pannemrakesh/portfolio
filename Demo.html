@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rakesh Kumar Pannem – Python Developer , Django Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --paper: #071711;
+  --card: rgba(17, 39, 29, .88);
+  --ink: #edf8f0;
+  --muted: #a6bbae;
+  --line: rgba(176, 219, 190, .16);
+  --green: #6ee7a5;
+  --green-dark: #123d2a;
+  --amber: #ffc46b;
+  --amber-bg: rgba(255, 196, 107, .12);
+  --code: #06110c;
+  --code-ink: #dcebe1;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font: 400 16px/1.7 "Bricolage Grotesque", system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(42, 140, 89, .22), transparent 34rem),
+    radial-gradient(ellipse at 90% 35%, rgba(255, 180, 80, .09), transparent 30rem),
+    var(--paper);
+}
+a { color: inherit; }
+::selection { background: var(--green); color: #06130c; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; border-radius: 6px; }
+.wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+header.nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 18px; flex-wrap: wrap; padding: 17px 24px; margin: 0 -24px;
+  background: rgba(7, 23, 17, .82);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+.logo {
+  font-size: 17px; font-weight: 800; letter-spacing: -.04em;
+  text-decoration: none; white-space: nowrap;
+}
+.logo::before { content: "<"; color: var(--green); margin-right: 5px; }
+.logo::after { content: "/>"; color: var(--green); margin-left: 5px; }
+nav { display: flex; gap: 7px; flex-wrap: wrap; }
+nav a {
+  padding: 8px 12px; border-radius: 999px; text-decoration: none;
+  color: var(--muted); font-size: 14px; transition: .25s ease;
+}
+nav a:hover { color: var(--green); background: rgba(110, 231, 165, .09); }
+
+.hero {
+  min-height: 570px; display: grid; grid-template-columns: 1.08fr .92fr;
+  gap: 50px; align-items: center; padding: 80px 0 92px;
+}
+.hero > div:first-child::before {
+  content: "AVAILABLE FOR OPPORTUNITIES";
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 12px; margin-bottom: 22px; border: 1px solid rgba(110,231,165,.28);
+  border-radius: 999px; color: var(--green); background: rgba(110,231,165,.07);
+  font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .09em;
+}
+.hero > div:first-child::after {
+  content: ""; display: block; width: 8px; height: 8px;
+  position: relative; margin-top: -32px; margin-left: 10px;
+  border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 14px var(--green);
+}
+h1 {
+  max-width: 750px; margin: 0 0 18px;
+  font-size: clamp(48px, 7vw, 88px); line-height: .98;
+  letter-spacing: -.065em; font-weight: 800;
+  background: linear-gradient(115deg, #f4fff7 15%, #8ee9b4 75%, #ffc46b);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.role { margin: 0 0 18px; color: var(--green); font-size: clamp(18px, 2vw, 22px); font-weight: 600; }
+.lead { max-width: 58ch; margin: 0 0 30px; color: var(--muted); font-size: 17px; }
+.btns, .cl { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 20px; border: 1px solid var(--green); border-radius: 9px;
+  font-weight: 700; text-decoration: none; transition: transform .25s, box-shadow .25s, background .25s;
+}
+.btn.primary { color: #06170e; background: var(--green); box-shadow: 0 8px 24px rgba(110,231,165,.16); }
+.btn.ghost { color: var(--green); background: rgba(110,231,165,.04); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+.btn.ghost:hover { background: rgba(110,231,165,.12); }
+
+.code {
+  position: relative; overflow: hidden; padding: 0; border: 1px solid rgba(110,231,165,.22);
+  border-radius: 18px; color: var(--code-ink); background: var(--code);
+  box-shadow: 0 25px 70px rgba(0,0,0,.32), 0 0 45px rgba(53, 160, 100, .08);
+  font: 400 13.5px/1.8 "IBM Plex Mono", ui-monospace, monospace;
+  transform: rotate(1deg);
+}
+.code::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(135deg, rgba(110,231,165,.07), transparent 42%);
+}
+.code .bar {
+  padding: 12px 17px; display: flex; justify-content: space-between;
+  color: #9db5a8; background: rgba(255,255,255,.045);
+  border-bottom: 1px solid rgba(255,255,255,.08); font-size: 12px;
+}
+.code .bar span:first-child::before { content: "●  ●  ●   "; color: #f0a36b; letter-spacing: 2px; }
+.code pre { margin: 0; padding: 22px; overflow-x: auto; }
+.k { color: #ffc46b; } .f { color: #7fe0ad; } .c { color: #829c8e; }
+
+section { padding: 78px 0; border-top: 1px solid var(--line); }
+h2 {
+  display: flex; align-items: center; gap: 14px;
+  margin: 0 0 34px; font-size: clamp(30px, 4vw, 43px);
+  letter-spacing: -.045em; line-height: 1.1;
+}
+h2::before { content: ""; width: 5px; height: 32px; border-radius: 9px; background: var(--green); }
+.proj { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.card {
+  position: relative; overflow: hidden; padding: 30px;
+  border: 1px solid var(--line); border-radius: 17px;
+  background: linear-gradient(145deg, rgba(22, 49, 36, .94), rgba(11, 29, 20, .94));
+  box-shadow: 0 12px 35px rgba(0,0,0,.12);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.card::before {
+  content: ""; position: absolute; width: 170px; height: 170px; right: -85px; top: -90px;
+  border-radius: 50%; background: rgba(110,231,165,.08); filter: blur(2px);
+}
+.card:hover { transform: translateY(-7px); border-color: rgba(110,231,165,.45); box-shadow: 0 22px 48px rgba(0,0,0,.25); }
+.card h3 { position: relative; margin: 0 0 8px; font-size: 23px; line-height: 1.25; letter-spacing: -.03em; }
+.stack { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 20px; padding: 0; list-style: none; }
+.stack li {
+  padding: 4px 11px; border: 1px solid rgba(255,196,107,.18);
+  border-radius: 99px; color: var(--amber); background: var(--amber-bg);
+  font: 500 11px/1.5 "IBM Plex Mono", monospace;
+}
+.card ul.pts { position: relative; padding-left: 19px; margin: 0; color: var(--muted); }
+.card ul.pts li { margin-bottom: 10px; padding-left: 3px; }
+.card ul.pts li::marker { color: var(--green); }
+
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.skills > div {
+  padding: 22px; border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(17,39,29,.62); transition: .25s ease;
+}
+.skills > div:hover { transform: translateY(-4px); border-color: rgba(110,231,165,.4); background: rgba(24,57,40,.82); }
+.skills h3 { margin: 0 0 8px; color: var(--green); font-size: 16px; }
+.skills p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.tl {
+  max-width: 800px; padding: 26px 30px; border: 1px solid var(--line);
+  border-left: 4px solid var(--green); border-radius: 0 15px 15px 0;
+  background: rgba(17,39,29,.68);
+}
+.tl .when { margin: 0 0 7px; color: var(--amber); font: 500 12px/1.5 "IBM Plex Mono", monospace; }
+.tl h3 { margin: 0; font-size: 22px; }
+.tl ul { padding-left: 20px; color: var(--muted); }
+.tl li { margin: 9px 0; }
+
+.edu { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.edu > div { padding: 27px; border: 1px solid var(--line); border-radius: 15px; background: rgba(17,39,29,.68); }
+.edu h3 { margin: 0 0 15px; color: var(--green); font-size: 19px; }
+.edu dl { margin: 0; }
+.edu dt { margin-top: 14px; font-weight: 700; }
+.edu dt:first-child { margin-top: 0; }
+.edu dd { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
+.certs { margin: 0; padding-left: 19px; color: var(--muted); }
+.certs li { padding: 5px 0; }
+.certs li::marker { color: var(--green); }
+
+.contact { text-align: center; }
+.contact h2 { justify-content: center; }
+.contact p { max-width: 58ch; margin: 0 auto 28px; color: var(--muted); }
+.cl { justify-content: center; }
+footer { padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: 13px; }
+
+@media (max-width: 820px) {
+  .hero, .proj, .edu { grid-template-columns: 1fr; }
+  .hero { gap: 34px; padding: 60px 0 70px; }
+  .code { transform: none; }
+  .skills { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .wrap { width: min(100% - 32px, 1120px); }
+  header.nav { margin: 0 -16px; padding: 14px 16px; }
+  nav { gap: 2px; }
+  nav a { padding: 7px 8px; font-size: 12px; }
+  .hero { min-height: auto; padding: 52px 0 60px; }
+  h1 { font-size: clamp(44px, 13vw, 66px); }
+  section { padding: 58px 0; }
+  .skills { grid-template-columns: 1fr; }
+  .card, .edu > div, .tl { padding: 22px; }
+  .btn { padding: 11px 15px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="#top">Rakesh Kumar Pannem</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#training">Training</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Rakesh Kumar Pannem</h1>
+        <p class="role">Django developer · Python full-stack</p>
+        <p class="lead">I build database-driven web apps with Django, from models and ORM to templates, forms, authentication and the admin panel. B.Tech graduate (2026) with 11 months of full-time Python full-stack training, based in Nellore, Andhra Pradesh.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn ghost" href="mailto:pannemrakesh2004@gmail.com">Email me</a>
+        </div>
+      </div>
+      <div class="code" aria-label="Simplified Django model sketch from my e-commerce project">
+        <div class="bar"><span>shop/models.py</span><span>simplified</span></div>
+<pre><span class="k">class</span> <span class="f">Category</span>(models.Model):
+    name = models.CharField(max_length=<span class="f">80</span>)
+
+<span class="k">class</span> <span class="f">Product</span>(models.Model):
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE)
+    name  = models.CharField(max_length=<span class="f">120</span>)
+    price = models.DecimalField(
+        max_digits=<span class="f">8</span>, decimal_places=<span class="f">2</span>)
+    stock = models.PositiveIntegerField()
+
+<span class="c"># Cart, Order and OrderItem link back</span>
+<span class="c"># to Product with foreign keys.</span></pre>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="proj">
+        <article class="card">
+          <h3>Bike spare parts e-commerce</h3>
+          <ul class="stack"><li>Python</li><li>Django</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Git</li></ul>
+          <ul class="pts">
+            <li>Full-stack Django store for browsing and buying bike spare parts, organised by category and brand.</li>
+            <li>Relational models (Category, Product, Cart, Order, OrderItem) on MySQL, with foreign keys keeping product, cart and order data consistent.</li>
+            <li>User registration, login and logout, a cart with add, update and remove, order placement and order history.</li>
+            <li>Product listing, detail, search and category filter pages in a responsive Bootstrap interface.</li>
+            <li>Customised admin panel to manage products, stock, categories and orders.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Credit card fraud detection</h3>
+          <ul class="stack"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>Random Forest</li><li>Jupyter</li><li>Streamlit</li></ul>
+          <ul class="pts">
+            <li>Random Forest model that classifies credit card transactions as fraudulent or legitimate.</li>
+            <li>Data preprocessing and exploratory analysis with Pandas in Jupyter Notebook.</li>
+            <li>Interactive Streamlit dashboard that shows the model’s predictions, turning the analysis into a usable tool.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div><h3>Languages</h3><p>Python, JavaScript, SQL</p></div>
+        <div><h3>Django</h3><p>MVT architecture, models and ORM, views and URL routing, templates, forms, authentication, sessions, admin panel, CRUD</p></div>
+        <div><h3>Front end</h3><p>HTML5, CSS3, JavaScript, Bootstrap</p></div>
+        <div><h3>Databases</h3><p>MySQL, SQLite</p></div>
+        <div><h3>Fundamentals</h3><p>Object-oriented programming, data structures and algorithms (practising in Python)</p></div>
+        <div><h3>AI and data</h3><p>Random Forest, Pandas, NumPy, Scikit-learn, Matplotlib, Streamlit</p></div>
+        <div><h3>Tools</h3><p>Git, Jupyter Notebook, debugging, clean and reusable code</p></div>
+      </div>
+    </section>
+
+    <section id="training">
+      <h2>Training</h2>
+      <div class="tl">
+        <p class="when">June 2025 – May 2026 · 11 months, full time</p>
+        <h3>Python Full Stack Trainee, iGenuine Institute</h3>
+        <ul>
+          <li>Intensive programme covering Python back-end development, Django, front-end development (HTML, CSS, JavaScript, Bootstrap) and SQL database management.</li>
+          <li>Built a full-stack Django app with models, views and templates, connected to MySQL, with CRUD functionality that the front end consumed as structured data.</li>
+          <li>Worked with trainers and peers on code reviews, debugging across front-end and back-end layers, and refining features from feedback.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education and certificates</h2>
+      <div class="edu">
+        <div>
+          <dl>
+            <dt>B.Tech, Computer Science Engineering (2026)</dt>
+            <dd>Audisankara Institute of Technology, Gudur, Andhra Pradesh · 75%</dd>
+            <dt>Intermediate, MPC (2020–2022)</dt>
+            <dd>Krishna Chaithanya Junior College · 78%</dd>
+            <dt>SSC (2019–2020)</dt>
+            <dd>Priyadarsini EM High School · 93%</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Certificates</h3>
+          <ul class="certs">
+            <li>Python, Infosys Springboard</li>
+            <li>Python (Basic), HackerRank</li>
+            <li>Java, Infosys Springboard</li>
+            <li>CSS (Basic), HackerRank</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s talk</h2>
+      <p>I’m looking for a junior Django or Python role where I can contribute to a team and keep growing as a backend developer.</p>
+      <div class="cl">
+        <a class="btn primary" href="mailto:pannemrakesh2004@gmail.com">pannemrakesh2004@gmail.com</a>
+        <a class="btn ghost" href="tel:+91 8247565482">+91 82475 65482</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/pannem-rakesh-kumar-b26525277/" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/pannemrakesh" rel="noopener">Github</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Rakesh Kumar Pannem · Nellore, Andhra Pradesh, India</footer>
+</div>
+</body>
+</html>
